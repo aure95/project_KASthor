@@ -1,0 +1,16 @@
+version: '1.0'
+
+services:
+  mongodb:
+    image: mongo:5.0
+    container_name: MongoDB_KASthor
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      # - ./data/db:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: KASthorDB
+      # - MONGO_INITDB_ROOT_USERNAME=root
+      # - MONGO_INITDB_ROOT_PASSWORD=root
+    #      MONGO_INITDB_DATABASE: KASthorDB
