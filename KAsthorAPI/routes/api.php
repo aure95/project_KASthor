@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Resources\CategoryCollections;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/categories', function () {
+    return CategoryCollections::collection(Category::all());
+});
+
+Route::post('/categories/{name}', function ($name) {
+     $category = new Category();
+     $category->name = $name;
+     $category->save();
 });
