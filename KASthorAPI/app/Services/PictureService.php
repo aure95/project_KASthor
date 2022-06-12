@@ -20,7 +20,7 @@ class PictureService
         ]);
     }
 
-    //to fix
+    //to clean
     public function receive(String $source) {
         $file = fopen($source, 'r');
         $buckets = $this->storage->buckets();
@@ -28,6 +28,7 @@ class PictureService
         foreach ($buckets as $bucket) {
             echo $bucket->name() . PHP_EOL;
         };
+
         $bucket = $this->storage->bucket('kasthorapp.appspot.com');
         $object = $bucket->object('KASTHOR.jpg');
         $object->downloadToFile('../test_firebase.jpg');
@@ -38,8 +39,6 @@ class PictureService
     }
 
     public function send(String $source) {
-
-
         $bucket = $this->storage->bucket('kasthorapp.appspot.com');
         $bucket->upload(
             fopen('../Test/test.jpg', 'r'),

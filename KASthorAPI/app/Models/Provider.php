@@ -5,8 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Picture extends Model
+class Provider extends Model
 {
+    protected $connection = 'mongodb';
+    protected $collection = 'Providers';
+
     protected $primaryKey = '_id';
 
     /* @var bool
@@ -15,7 +18,7 @@ class Picture extends Model
 
    /* @var array
      */
-    protected $fillable = ['fileName'];
+    protected $fillable = ['name'];
 
     use HasFactory;
 }

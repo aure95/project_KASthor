@@ -25,10 +25,5 @@ class Advertising extends Model
         return $date;
     }
 
-    public function media() {
-
-    }
-
-
     use HasFactory;
 }

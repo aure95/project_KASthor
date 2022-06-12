@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Date;
 use Jenssegers\Mongodb\Eloquent\Model;
 
 class Category extends Model
@@ -14,11 +15,11 @@ class Category extends Model
 
     /* @var bool
     */
-    public $timestamps = false;
+    public $timestamps = true;
 
    /* @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['value'];
 
     use HasFactory;
 }
