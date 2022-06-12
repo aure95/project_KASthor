@@ -8,12 +8,15 @@
         "php": "^7.3|^8.0",
         "fideloper/proxy": "^4.3",
         "fruitcake/laravel-cors": "^2.0",
+        "google/cloud-storage": "^1.27",
         "guzzlehttp/guzzle": "^7.0.1",
         "jenssegers/mongodb": "3.8",
+        "kreait/laravel-firebase": "*",
         "laravel/framework": "8.12",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "psr/log": "^1"
+        "psr/log": "^1",
+        "timwassenburg/laravel-service-generator": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

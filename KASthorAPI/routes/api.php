@@ -2,6 +2,7 @@
 
 use App\Http\Resources\CategoryCollections;
 use App\Models\Category;
+use App\Services\PictureService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,9 @@ Route::post('/categories/{name}', function ($name) {
      $category = new Category();
      $category->name = $name;
      $category->save();
+});
+
+Route::get('/test', function () {
+    $pictureService = new PictureService();
+    $pictureService->send("../test.jpg");
 });
