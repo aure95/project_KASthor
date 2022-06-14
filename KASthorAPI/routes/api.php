@@ -2,6 +2,8 @@
 
 use App\Http\Resources\CategoryCollections;
 use App\Models\Category;
+use App\Models\Tag;
+use App\Models\Content;
 use App\Services\PictureService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +34,7 @@ Route::post('/categories/{name}', function ($name) {
 });
 
 Route::get('/test', function () {
-    $pictureService = new PictureService();
-    $pictureService->send("../test.jpg");
+    $tag = new Tag();
+    $tag->value = 'testTag';
+    $tag->save();
 });
