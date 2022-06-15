@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 use Mediatype;
 
 class Content extends Model
 {
 
     protected $connection = 'mongodb';
-    protected $collection = 'Contents';
+    protected $collection = 'ContentsTest';
 
     protected $primaryKey = '_id';
 
@@ -20,23 +20,26 @@ class Content extends Model
 
    /* @var array
      */
-    protected $fillable = ['title', 'summary'];
+    protected $fillable = ['title'];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'creators' => 'array',
-        'type' => Mediatype::class,
-        'providers' => 'array',
-        'pictures' => 'array',
-        'categories' => 'array',
-        'links' => 'array',
-        'releaseDate' => 'array',
+    // public function categories() {
+    //     return $this->hasMany(Category::class, 'categories_id');
+    // }
+    // /**
+    //  * The attributes that should be cast.
+    //  *
+    //  * @var array
+    //  */
+    // protected $casts = [
+    //     'creators' => 'array',
+    //     'type' => Mediatype::class,
+    //     'providers' => 'array',
+    //     'pictures' => 'array',
+    //     'categories' => 'array',
+    //     'links' => 'array',
+    //     'releaseDate' => 'array',
 
-    ];
+    // ];
 
     use HasFactory;
 }

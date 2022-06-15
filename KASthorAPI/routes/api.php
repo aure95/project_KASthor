@@ -4,9 +4,12 @@ use App\Http\Resources\CategoryCollections;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Content;
+use App\Models\MediaType;
+use App\Models\StorageLink;
 use App\Services\PictureService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StorageLinkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +36,21 @@ Route::post('/categories/{name}', function ($name) {
      $category->save();
 });
 
+Route::get('/media-types', function () {
+    return MediaType::all();
+});
+
+Route::post('/media-types/{name}', function ($name) {
+     $category = new MediaType();
+     $category->name= $name;
+     $category->save();
+});
+
 Route::get('/test', function () {
     $tag = new Tag();
     $tag->value = 'testTag';
     $tag->save();
 });
+
+
+    Route::post('/storage-links', 'StorageLinkController@store');

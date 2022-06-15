@@ -5,19 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class Provider extends Model
+class MediaType extends Model
 {
     protected $connection = 'mongodb';
-    protected $collection = 'Providers';
+    protected $collection = 'Mediatypes';
 
-    protected $primaryKey = '_id';
+    public $incrementing = false;
 
-    /* @var bool
-    */
     public $timestamps = false;
 
-   /* @var array
-     */
+    protected $primaryKey = 'name';
+
     protected $fillable = ['name'];
 
     use HasFactory;

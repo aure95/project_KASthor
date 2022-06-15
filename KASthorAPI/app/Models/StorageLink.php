@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class Provider extends Model
+class StorageLink extends Model
 {
     protected $connection = 'mongodb';
-    protected $collection = 'Providers';
+    protected $collection = 'Storagelinks';
 
     protected $primaryKey = '_id';
 
@@ -19,6 +19,10 @@ class Provider extends Model
    /* @var array
      */
     protected $fillable = ['name'];
+
+    public function mediatype() {
+        return $this->hasOne(MediaType::class,  'name', 'mediatype_id');
+    }
 
     use HasFactory;
 }
