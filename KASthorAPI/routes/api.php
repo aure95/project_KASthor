@@ -29,7 +29,7 @@ Route::get('/categories', function () {
 
 Route::post('/categories/{name}', function ($name) {
      $category = new Category();
-     $category->name = $name;
+     $category->name= $name;
      $category->save();
 });
 
