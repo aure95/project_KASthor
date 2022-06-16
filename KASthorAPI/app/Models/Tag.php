@@ -19,7 +19,7 @@ class Tag extends Model
 
    /* @var array
      */
-    protected $fillable = ['value'];
+    protected $fillable = ['name'];
 
     use HasFactory;
 }

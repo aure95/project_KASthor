@@ -11,11 +11,13 @@ class Category extends Model
     protected $connection = 'mongodb';
     protected $collection = 'Categories';
 
-    public $incrementing = false;
+    public $incrementing = true;
 
     public $timestamps = false;
 
-    protected $primaryKey = 'name';
+    protected $primaryKey = '_id';
+
+    protected $fillable = ['name'];
 
     use HasFactory;
 }

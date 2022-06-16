@@ -10,11 +10,11 @@ class MediaType extends Model
     protected $connection = 'mongodb';
     protected $collection = 'Mediatypes';
 
-    public $incrementing = false;
+    public $incrementing = true;
 
     public $timestamps = false;
 
-    protected $primaryKey = 'name';
+    protected $primaryKey = '_id';
 
     protected $fillable = ['name'];
 

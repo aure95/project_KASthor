@@ -48,7 +48,7 @@ Route::post('/media-types/{name}', function ($name) {
 
 Route::get('/test', function () {
     $tag = new Tag();
-    $tag->value = 'testTag';
+    $tag->name = 'testTag';
     $tag->save();
 });
 
