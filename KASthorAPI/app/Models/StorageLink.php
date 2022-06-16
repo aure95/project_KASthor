@@ -21,7 +21,7 @@ class StorageLink extends Model
     protected $fillable = ['name'];
 
     public function mediatype() {
-        return $this->hasOne(MediaType::class,  '_id', 'mediatype_id');
+        return $this->belongsTo(MediaType::class, 'mediatype_id');
     }
 
     use HasFactory;

@@ -53,4 +53,4 @@ Route::get('/test', function () {
 });
 
 
-    Route::post('/storage-links', 'StorageLinkController@store');
+Route::post('/storage-links', 'StorageLinkController@store');

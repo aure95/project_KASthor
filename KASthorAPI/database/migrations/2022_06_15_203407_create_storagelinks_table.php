@@ -17,7 +17,7 @@ class CreateStoragelinksTable extends Migration
         Schema::create('Storagelinks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('mediatype_id')->references('name')->on('Mediatypes');
+            $table->foreignkey('mediatype_id')->references('name')->on('Mediatypes');
         });
     }
 

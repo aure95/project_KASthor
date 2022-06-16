@@ -30,8 +30,8 @@ class StorageLinkController extends Controller
         //
         $storageLink = new StorageLink();
         $storageLink->link = $request->input('name');
-        $mediaType = MediaType::where($request->input('mediatype_id'))->first();
-        $storageLink->mediatype()->save($mediaType);
+        $mediaType = MediaType::where('name', $request->input('mediatype_id'))->firstOrFail();
+        $storageLink->mediatype()->associate($mediaType);
         $storageLink->save();
 
     }
