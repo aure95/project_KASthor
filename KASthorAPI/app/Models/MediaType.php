@@ -8,7 +8,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class MediaType extends Model
 {
     protected $connection = 'mongodb';
-    protected $collection = 'Mediatypes';
+    protected $collection = 'mediatypes';
 
     public $incrementing = true;
 

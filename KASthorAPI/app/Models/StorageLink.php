@@ -8,7 +8,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class StorageLink extends Model
 {
     protected $connection = 'mongodb';
-    protected $collection = 'Storagelinks';
+    protected $collection = 'storage_links';
 
     protected $primaryKey = '_id';
 
@@ -19,10 +19,6 @@ class StorageLink extends Model
    /* @var array
      */
     protected $fillable = ['name'];
-
-    public function mediatype() {
-        return $this->belongsTo(MediaType::class, 'mediatype_id');
-    }
 
     use HasFactory;
 }

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Date;
 class Advertising extends Model
 {
     protected $connection = 'mongodb';
-    protected $collection = 'Advertisings';
+    protected $collection = 'advertising';
 
     protected $primaryKey = '_id';
 

@@ -9,7 +9,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class Tag extends Model
 {
     protected $connection = 'mongodb';
-    protected $collection = 'Tags';
+    protected $collection = 'tags';
 
     protected $primaryKey = '_id';
 

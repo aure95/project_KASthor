@@ -9,7 +9,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class Category extends Model
 {
     protected $connection = 'mongodb';
-    protected $collection = 'Categories';
+    protected $collection = 'categories';
 
     public $incrementing = true;
 
