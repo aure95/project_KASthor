@@ -52,5 +52,10 @@ Route::get('/test', function () {
     $tag->save();
 });
 
+// storage-links
 
 Route::post('/storage-links', 'StorageLinkController@store');
+
+// contents
+Route::post('/contents', 'ContentController@store');
+Route::get('/contents', 'ContentController@all');

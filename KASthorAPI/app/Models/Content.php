@@ -10,17 +10,26 @@ class Content extends Model
 {
 
     protected $connection = 'mongodb';
-    protected $collection = 'ContentsTest';
+    protected $collection = 'contents';
 
     protected $primaryKey = '_id';
 
     /* @var bool
     */
-    public $timestamps = false;
+    public $timestamps = true;
 
    /* @var array
      */
-    protected $fillable = ['title'];
+    protected $fillable = ['creator',
+                           'provider',
+                           'summary',
+                           'links',
+                           'release_date'
+                         ];
+
+    public function type() {
+        return $this->belongsTo(MediaType::class, 'mediatypetype_id');
+    }
 
     // public function categories() {
     //     return $this->hasMany(Category::class, 'categories_id');
