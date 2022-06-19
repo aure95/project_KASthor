@@ -14,7 +14,7 @@ class CreateMediatypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('mediatype', function (Blueprint $table) {
+        Schema::create('mediatypes', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
         });
@@ -27,6 +27,6 @@ class CreateMediatypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mediatype');
+        Schema::dropIfExists('mediatypes');
     }
 }

@@ -8,7 +8,8 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class StorageLink extends Model
 {
     protected $connection = 'mongodb';
-    protected $collection = 'storage_links';
+    // protected $collection = 'storage_links';
+    protected $collection='storage_links';
 
     protected $primaryKey = '_id';
 

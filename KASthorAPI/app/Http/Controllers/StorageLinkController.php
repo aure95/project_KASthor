@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\StorageLink;
 use App\Models\MediaType;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
 
 class StorageLinkController extends Controller
@@ -29,11 +30,16 @@ class StorageLinkController extends Controller
     {
         //
         $storageLink = new StorageLink();
-        $storageLink->link = $request->input('name');
+        $storageLink->name = $request->input('name');
         // $mediaType = MediaType::where('name', $request->input('mediatype_id'))->firstOrFail();
         // $storageLink->mediatype()->associate($mediaType);
         $storageLink->save();
 
+    }
+
+
+    public function all() {
+        return StorageLink::all();
     }
 
     /**

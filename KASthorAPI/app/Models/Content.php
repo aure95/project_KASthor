@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
-use Mediatype;
+use App\Models\MediaType;
 
 class Content extends Model
 {
@@ -28,7 +28,7 @@ class Content extends Model
                          ];
 
     public function type() {
-        return $this->belongsTo(MediaType::class, 'mediatypetype_id');
+        return $this->belongsTo(MediaType::class, 'mediatype_id');
     }
 
     // public function categories() {

@@ -55,7 +55,9 @@ Route::get('/test', function () {
 // storage-links
 
 Route::post('/storage-links', 'StorageLinkController@store');
+Route::get('/storage-links', 'StorageLinkController@all');
 
 // contents
+
 Route::post('/contents', 'ContentController@store');
 Route::get('/contents', 'ContentController@all');

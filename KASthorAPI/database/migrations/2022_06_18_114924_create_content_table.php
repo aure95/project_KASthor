@@ -18,7 +18,7 @@ class CreateContentTable extends Migration
             $table->string('creator');
             $table->string('provider');
             $table->text('summary');
-            $table->string('mediatype_id')->references('_id')->on('mediatypes');
+            $table->foreignId('mediatype_id')->references('_id')->on('mediatypes');
             $table->json('links');
             $table->date('release_date');
             $table->foreignkey('created_by')->references('_id')->on('users');

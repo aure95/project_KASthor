@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Content;
 use App\Models\MediaType;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class ContentController extends Controller
 {
@@ -31,8 +32,9 @@ class ContentController extends Controller
         $content->creator = $request->input('provider');
         $content->creator = $request->input('summary');
         // $content->creator = $request('links');
-        $type = MediaType::find($request->input('mediatype_id'));
+        $type = MediaType::where('name', $request->input('mediatype_name'))->firstOrFail();
         $content->type()->associate($type);
+        $content->save();
     }
 
     public function all() {
