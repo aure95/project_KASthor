@@ -10,6 +10,7 @@ use App\Services\PictureService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StorageLinkController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/categories', function () {
-    return CategoryCollections::collection(Category::all());
+    return Category::all();
 });
 
 Route::post('/categories/{name}', function ($name) {
@@ -61,3 +62,8 @@ Route::get('/storage-links', 'StorageLinkController@all');
 
 Route::post('/contents', 'ContentController@store');
 Route::get('/contents', 'ContentController@all');
+
+// tags
+
+Route::post('/tags', 'TagController@store');
+Route::get('/tags', 'TagController@all');

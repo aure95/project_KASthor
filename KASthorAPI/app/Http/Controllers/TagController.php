@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Content;
-use App\Models\MediaType;
-use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\Models\Tag;
+use App\Models\Content;
 
-class ContentController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,25 +27,16 @@ class ContentController extends Controller
      */
     public function store(Request $request)
     {
-        $content = new Content();
-        $content->creator = $request->input('creator');
-        $content->creator = $request->input('provider');
-        $content->creator = $request->input('summary');
-        // $content->creator = $request('links');
-        $type = MediaType::where('name', $request->input('mediatype_name'))->firstOrFail();
-        $content->type()->associate($type);
-        $categories_name = $request->input('categories_name');
-        if ($categories_name != null && count($categories_name) != 0) {
-            foreach ($categories_name as $category_name) {
-                $category = Category::where('name', $category_name)->firstOrfail();
-                $content->categories()->attach($category);
-            }
-        }
-        $content->save();
+        $tag = new Tag();
+        $tag->name = $request->input('name');
+        $contentFound = Content::findMany($request->input('content_ids'));
+        dump($contentFound);
+        $tag->contents()->attach($contentFound);
+        $tag->save();
     }
 
     public function all() {
-        return Content::all();
+        return Tag::all();
     }
 
     /**

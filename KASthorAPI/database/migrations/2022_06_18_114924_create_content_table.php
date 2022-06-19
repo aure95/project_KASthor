@@ -15,6 +15,7 @@ class CreateContentTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->unique();
             $table->string('creator');
             $table->string('provider');
             $table->text('summary');
@@ -33,6 +34,6 @@ class CreateContentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('content');
+        Schema::dropIfExists('contents');
     }
 }

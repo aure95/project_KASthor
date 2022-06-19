@@ -8,7 +8,6 @@ use App\Models\MediaType;
 
 class Content extends Model
 {
-
     protected $connection = 'mongodb';
     protected $collection = 'contents';
 
@@ -30,6 +29,14 @@ class Content extends Model
     public function type() {
         return $this->belongsTo(MediaType::class, 'mediatype_id');
     }
+
+    public function categories() {
+        return $this->belongsToMany(Category::class, null, null, 'category_ids');
+    }
+
+    protected $casts = [
+        'links' => 'array'
+    ];
 
     // public function categories() {
     //     return $this->hasMany(Category::class, 'categories_id');

@@ -3,27 +3,22 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Facades\Date;
-use Jenssegers\Mongodb\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 use App\Models\Content;
 
-class Tag extends Model
+class Universe extends Model
 {
     protected $connection = 'mongodb';
-    protected $collection = 'tags';
+    protected $collection='universes';
 
     protected $primaryKey = '_id';
 
-    /* @var bool
-    */
     public $timestamps = false;
 
-   /* @var array
-     */
-    protected $fillable = ['name'];
+    protected $fillable = ["name"];
 
     // public function contents() {
-    //     return $this->belongsToMany(Content::class, null, 'preferences_ids', 'content_ids');
+    //     return $this->morphToMany(Content::class, 'content_ids');
     // }
 
     public function contents() {
