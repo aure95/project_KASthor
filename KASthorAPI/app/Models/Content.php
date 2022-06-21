@@ -19,7 +19,9 @@ class Content extends Model
 
    /* @var array
      */
-    protected $fillable = ['creator',
+    protected $fillable = [
+                           'title',
+                           'creator',
                            'provider',
                            'summary',
                            'links',
