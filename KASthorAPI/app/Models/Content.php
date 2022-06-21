@@ -5,6 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
 use App\Models\MediaType;
+use App\Models\Category;
+use App\Models\StorageLink;
+use App\Models\Tag;
+use App\Models\Universe;
 
 class Content extends Model
 {
@@ -32,8 +36,28 @@ class Content extends Model
         return $this->belongsTo(MediaType::class, 'mediatype_id');
     }
 
+    // public function categories() {
+    //     return $this->belongsToMany(Category::class, null, null, 'category_ids');
+    // }
+
     public function categories() {
-        return $this->belongsToMany(Category::class, null, null, 'category_ids');
+        return $this->morphedByMany(Category::class, 'has_content');
+    }
+
+    // public function type() {
+    //     return $this->morphedByMany(MediaType::class, 'has_content');
+    // }
+
+    public function storageLinks() {
+        return $this->morphedByMany(StorageLink::class, 'has_content');
+    }
+
+    public function tags() {
+        return $this->morphedByMany(Tag::class, 'has_content');
+    }
+
+    public function universes() {
+        return $this->morphedByMany(Universe::class, 'has_content');
     }
 
     protected $casts = [

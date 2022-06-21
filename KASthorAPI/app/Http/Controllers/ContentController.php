@@ -36,13 +36,14 @@ class ContentController extends Controller
         $type = MediaType::where('name', $request->input('mediatype_name'))->firstOrFail();
         $content->type()->associate($type);
         $categories_name = $request->input('categories_name');
+        //à revoir changement suite à passage methode morphedBy()
         if ($categories_name != null && count($categories_name) != 0) {
             foreach ($categories_name as $category_name) {
                 $category = Category::where('name', $category_name)->firstOrfail();
                 $content->categories()->attach($category);
+                $content->save();
             }
         }
-        $content->save();
     }
 
     public function all() {

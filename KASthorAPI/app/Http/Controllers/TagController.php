@@ -29,10 +29,13 @@ class TagController extends Controller
     {
         $tag = new Tag();
         $tag->name = $request->input('name');
-        $contentFound = Content::findMany($request->input('content_ids'));
-        dump($contentFound);
-        $tag->contents()->attach($contentFound);
         $tag->save();
+
+        $contentFounds = Content::findMany($request->input('content_ids'));
+        foreach ($contentFounds as $contentFound) {
+            $contentFound->tags()->attach($tag);
+            $contentFound->save();
+        }
     }
 
     public function all() {

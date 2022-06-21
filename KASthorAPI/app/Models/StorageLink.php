@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
+use App\Models\Content;
 
 class StorageLink extends Model
 {
@@ -19,6 +20,10 @@ class StorageLink extends Model
    /* @var array
      */
     protected $fillable = ['name'];
+
+    public function contents(){
+        return $this->morphToMany(Content::class,'has_content');
+    }
 
     use HasFactory;
 }
