@@ -7,13 +7,15 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\MediaTypeSeeder;
 use Database\Seeders\CategorySeeder;
+use Database\Factories\ContentSeeder;
 
 class DatabaseSeeder extends Seeder
 {
     private $seedersToRun = [
         UserSeeder::class,
         CategorySeeder::class,
-        MediaTypeSeeder::class
+        MediaTypeSeeder::class,
+        ContentSeeder::class
     ];
     /**
      * Seed the application's database.

@@ -176,7 +176,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Jenssegers\Mongodb\MongodbServiceProvider::class,
-        Kreait\Laravel\Firebase\ServiceProvider::class,
+        // Kreait\Laravel\Firebase\ServiceProvider::class,
     ],
 
     /*

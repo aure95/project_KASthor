@@ -1,0 +1,19 @@
+127.0.0.1:55202"
+
+
+
+ C:\Program Files\MongoDB\Server\5.0\bin> ./mongod.exe --dbpath "C:\Users\mouau\Documents\Projects\projet_KASTHOR\imie-kas\MongoDB_Local\data\db"
+
+// avec authentification
+ C:\Program Files\MongoDB\Server\5.0\bin> ./mongod.exe --dbpath "C:\Users\mouau\Documents\Projects\projet_KASTHOR\imie-kas\MongoDB_Local\data\db" --auth
+C:\Program Files\MongoDB\Server\5.0\bin> ./mongo.exe
+
+
+docker 
+
+
+docker compose up -d
+
+
+docker exec -it mongodb_local-mongodb-1 mongoimport --db music --file C:\Users\mouau\Documents\Projects\projet_KASTHOR\imie-kas\MongoDB_Local\examples_datas\examples.json
+
