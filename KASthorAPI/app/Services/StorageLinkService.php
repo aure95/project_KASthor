@@ -17,8 +17,11 @@ class StorageLinkService
         ]);
     }
 
-    public function uploadStorageLink(StorageLink $storageLink ,String $filePathToSave) {
-        $this->upload($storageLink->name);
+    public function uploadStorageLink(String $filePathToSave): StorageLink  {
+        $fileNameUploaded = $this->upload($filePathToSave);
+        $storageLink = new StorageLink();
+        $storageLink->name = $fileNameUploaded;
+        return $storageLink;
     }
 
     public function downloadStorageLink(StorageLink $storageLink ,String $filePathToSave) {
@@ -31,7 +34,7 @@ class StorageLinkService
         $object->downloadToFile($filePathToSave);
     }
 
-    public function upload(String $filePath) {
+    public function upload(String $filePath): String {
         $bucket = $this->storage->bucket($this->STORAGE_LINK_BUCKET_NAME);
         $bucket->upload(
             fopen($filePath, 'r'),
@@ -39,5 +42,6 @@ class StorageLinkService
                 'predefinedAcl' => 'publicRead'
             ]
         );
+        return $filePath;
     }
 }
