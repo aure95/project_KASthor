@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
 use App\Models\MediaType;
 use App\Models\Content;
+use App\Models\StorageLink;
 
 class Preference extends Model
 {
@@ -30,6 +31,10 @@ class Preference extends Model
 
     public function categories() {
         return $this->belongsToMany(Category::class, null, null , 'category_ids');
+    }
+
+    public function advertisings(){
+        return $this->morphToMany(Advertising::class, 'has_storage_links');
     }
 
     use HasFactory;

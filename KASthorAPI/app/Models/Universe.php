@@ -25,5 +25,6 @@ class Universe extends Model
         return $this->morphToMany(Content::class, 'has_content');
     }
 
+
     use HasFactory;
 }

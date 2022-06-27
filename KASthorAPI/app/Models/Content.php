@@ -32,6 +32,10 @@ class Content extends Model
                            'release_date'
                          ];
 
+    public function medias(){
+        return $this->morphToMany(StorageLink::class, 'has_storage_links');
+    }
+
     public function type() {
         return $this->belongsTo(MediaType::class, 'mediatype_id');
     }
@@ -49,7 +53,7 @@ class Content extends Model
     // }
 
     public function storageLinks() {
-        return $this->morphedByMany(StorageLink::class, 'has_content');
+        return $this->morphedToMany(StorageLink::class, 'has_content');
     }
 
     public function tags() {

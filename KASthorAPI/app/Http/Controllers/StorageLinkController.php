@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\StorageLink;
-use App\Models\MediaType;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Storage;
+use App\Models\StorageLink;
 
 class StorageLinkController extends Controller
 {
@@ -17,7 +15,7 @@ class StorageLinkController extends Controller
      */
     public function index()
     {
-        //
+        return StorageLink::all();
     }
 
     /**
@@ -37,18 +35,13 @@ class StorageLinkController extends Controller
 
     }
 
-
-    public function all() {
-        return StorageLink::all();
-    }
-
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\StorageLink  $storageLink
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(StorageLink $storageLink)
+    public function show($id)
     {
         //
     }
@@ -57,10 +50,10 @@ class StorageLinkController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\StorageLink  $storageLink
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, StorageLink $storageLink)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -68,11 +61,12 @@ class StorageLinkController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\StorageLink  $storageLink
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(StorageLink $storageLink)
+    public function destroy($id)
     {
-        //
+        StorageLink::findorFail($id)
+                        ->delete();
     }
 }

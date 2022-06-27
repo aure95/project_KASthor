@@ -55,8 +55,11 @@ Route::get('/test', function () {
 
 // storage-links
 
+//don't work
+#Route::resource('storage-links', StorageLink::class);
 Route::post('/storage-links', 'StorageLinkController@store');
-Route::get('/storage-links', 'StorageLinkController@all');
+Route::get('/storage-links', 'StorageLinkController@index');
+Route::delete('/storage-links/{id}', 'StorageLinkController@destroy');
 
 // contents
 
@@ -67,3 +70,4 @@ Route::get('/contents', 'ContentController@all');
 
 Route::post('/tags', 'TagController@store');
 Route::get('/tags', 'TagController@all');
+
