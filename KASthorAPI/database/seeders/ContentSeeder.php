@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Content;
+use Database\Factories\UserFactory;
 
 class ContentSeeder extends Seeder
 {

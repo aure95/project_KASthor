@@ -2,21 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Base\RestControllerBase;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use App\Models\StorageLink;
 
-class StorageLinkController extends Controller
+class StorageLinkController extends RestControllerBase
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return StorageLink::all();
+    public function __construct() {
+        parent::__construct(new StorageLink());
     }
+
+    // /**
+    //  * Display a listing of the resource.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function index()
+    // {
+    //     return StorageLink::all();
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -58,15 +62,15 @@ class StorageLinkController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        StorageLink::findorFail($id)
-                        ->delete();
-    }
+    // /**
+    //  * Remove the specified resource from storage.
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function destroy($id)
+    // {
+    //     StorageLink::findorFail($id)
+    //                     ->delete();
+    // }
 }

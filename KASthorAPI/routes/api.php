@@ -64,10 +64,10 @@ Route::delete('/storage-links/{id}', 'StorageLinkController@destroy');
 // contents
 
 Route::post('/contents', 'ContentController@store');
-Route::get('/contents', 'ContentController@all');
+Route::get('/contents', 'ContentController@index');
 
 // tags
 
 Route::post('/tags', 'TagController@store');
-Route::get('/tags', 'TagController@all');
+Route::get('/tags', 'TagController@index');
 

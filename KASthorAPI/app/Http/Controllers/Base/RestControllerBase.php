@@ -1,20 +1,28 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Base;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Jenssegers\Mongodb\Eloquent\Model;
 
-class UniverseController extends Controller
+class RestControllerBase extends Controller
 {
-    /**
+    protected $clazz;
+
+    function __construct(Object $clazz) {
+
+        $this->clazz = $clazz;
+    }
+
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-
+        return $this->clazz->all();
     }
 
     /**
@@ -36,7 +44,7 @@ class UniverseController extends Controller
      */
     public function show($id)
     {
-        //
+        return $this->clazz->findOrFail($id);
     }
 
     /**
@@ -59,6 +67,7 @@ class UniverseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->clazz->findOrFail($id)
+                        ->delete();
     }
 }
