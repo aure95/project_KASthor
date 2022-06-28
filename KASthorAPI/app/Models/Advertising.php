@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Date;
 use App\Models\StorageLink;
+use App\Models\User;
 
 class Advertising extends Model
 {
@@ -16,14 +17,14 @@ class Advertising extends Model
 
     /* @var bool
     */
-    public $timestamps = false;
+    public $timestamps = true;
 
    /* @var array
      */
-    protected $fillable = ['name, active'];
+    protected $fillable = ['name, active, duration'];
 
-    public function duration(Date $date) {
-        return $date;
+    public function customer() {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function medias(){
@@ -36,6 +37,7 @@ class Advertising extends Model
      */
     protected $casts = [
         'active' => 'boolean',
+        'duration' => 'date'
     ];
 
     use HasFactory;
