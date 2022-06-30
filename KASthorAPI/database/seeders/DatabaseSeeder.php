@@ -7,7 +7,8 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\MediaTypeSeeder;
 use Database\Seeders\CategorySeeder;
-use Database\Factories\ContentSeeder;
+use Database\Seeders\ContentSeeder;
+use Database\Seeders\UniverseSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,7 +16,8 @@ class DatabaseSeeder extends Seeder
         UserSeeder::class,
         CategorySeeder::class,
         MediaTypeSeeder::class,
-        ContentSeeder::class
+        ContentSeeder::class,
+        UniverseSeeder::class
     ];
     /**
      * Seed the application's database.

@@ -20,17 +20,23 @@ class UniverseFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @return array
+     *
      */
     public function definition()
     {
-        $contentNumberToGet = rand(1, $this->nbMaxOfContents);
-        $contents = Content::all()->random($contentNumberToGet);
-
         $universe = new Universe();
         $universe->name =  $this->faker->title();
-        $universe->contents()->attach($contents[0]);
+        return array($universe);
+    }
 
-        return $universe;
+    public function configure()
+    {
+        return $this->afterCreating(function (Universe $universe) {
+            $contentNumberToGet = rand(1, $this->nbMaxOfContents);
+            $contents = Content::all()->random($contentNumberToGet);
+            foreach($contents as $content) {
+                $universe->contents()->attach($content);
+            }
+        });
     }
 }

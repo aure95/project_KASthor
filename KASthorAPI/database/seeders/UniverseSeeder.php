@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Universe;
-use Database\Factories\UniverseFactory;
 
 class UniverseSeeder extends Seeder
 {

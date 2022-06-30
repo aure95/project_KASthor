@@ -56,7 +56,7 @@ class RestControllerBase extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->clazz->findOrFail($id)->update($request->all());
     }
 
     /**
