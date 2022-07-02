@@ -7,6 +7,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 use App\Models\MediaType;
 use App\Models\Content;
 use App\Models\StorageLink;
+use App\Models\Universe;
 
 class Preference extends Model
 {
@@ -17,6 +18,10 @@ class Preference extends Model
 
     public $timestamps = false;
 
+    public function universes() {
+        return $this->morphToMany(Universe::class, 'has_universes');
+    }
+
     public function types() {
         return $this->belongsToMany(MediaType::class, null, null, 'mediatype_ids');
     }
@@ -24,10 +29,6 @@ class Preference extends Model
     public function contents() {
         return $this->belongsToMany(Content::class, null, null, 'content_ids');
     }
-    //doesn t work properly
-    // public function contents() {
-    //     return $this->morphToMany(Content::class, null, null,'has_content_id');
-    // }
 
     public function categories() {
         return $this->belongsToMany(Category::class, null, null , 'category_ids');
