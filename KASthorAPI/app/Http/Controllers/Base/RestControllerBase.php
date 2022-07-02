@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class RestControllerBase extends Controller
+abstract class RestControllerBase extends Controller
 {
+    //@var Jenssegers\Mongodb\Eloquent\Model
     protected $clazz;
 
     function __construct(Object $clazz) {
@@ -15,11 +16,11 @@ class RestControllerBase extends Controller
         $this->clazz = $clazz;
     }
 
-     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function index()
     {
         return $this->clazz->all();
@@ -31,10 +32,7 @@ class RestControllerBase extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+     public abstract function store(Request $request);
 
     /**
      * Display the specified resource.

@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Base\RestControllerBase;
+use App\Models\Universe;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class UniverseController extends Controller
+class UniverseController extends RestControllerBase
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
 
+    public function __construct() {
+        parent::__construct(new Universe());
     }
 
     /**
@@ -28,37 +25,4 @@ class UniverseController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

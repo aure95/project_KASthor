@@ -2,19 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Base\RestControllerBase;
+use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 
-class CategoryController extends Controller
+class CategoryController extends RestControllerBase
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+
+    public function __construct() {
+        parent::__construct(new Category());
     }
 
     /**
@@ -28,37 +24,4 @@ class CategoryController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
