@@ -21,7 +21,9 @@ class CategoryController extends RestControllerBase
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category();
+        $category->name = $request->input('name');
+        $category->save();
     }
 
 }
