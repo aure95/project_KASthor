@@ -13,7 +13,9 @@ class MediaTypeController extends RestControllerBase
     }
 
     public function store(Request $request) {
-        //
+        $mediatype = new MediaType();
+        $mediatype->name = $request->input('name');
+        $mediatype->save();
     }
 
 }
