@@ -18,12 +18,15 @@ abstract class RestControllerBase extends Controller
 
     /**
     * Display a listing of the resource.
-    *
+    * @var $page (requestParameter) specify pag number by page by value provided, default first page
+    * @var $size (requestParameter) specify number of elements by page by value provided, default 10 elements
     * @return \Illuminate\Http\Response
     */
-    public function index()
+    public function index(Request $request)
     {
-        return $this->clazz->all();
+        $pageVariable = intval($request->query('page', '1'));
+        $pageSizeVariable = intval($request->query('size', '10'));
+        return $this->clazz->simplePaginate($pageSizeVariable, ['*'], $pageVariable);
     }
 
     /**
