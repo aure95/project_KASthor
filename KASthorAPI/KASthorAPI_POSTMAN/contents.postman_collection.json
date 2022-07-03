@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "7728efd9-0df1-48f6-b5f4-70d8cd196e0c",
+		"name": "contents",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10376994"
+	},
+	"item": [
+		{
+			"name": "post contents",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"test\",\r\n    \"creator\" : \"me\",\r\n    \"provider\" : \"WARNER\",\r\n    \"summary\" : \"c est  un super film\",\r\n    \"links\" : [\"hola\", \"superlink\"],\r\n    \"user_id\" : \"\",\r\n    \"mediatype_id\" : \"62be035633c9d23b4b089bd9\",\r\n    \"categories_ids\" : [\"62be035633c9d23b4b089bd5\", \"62be035633c9d23b4b089bd6\"],\r\n    \"release_date\" : \"2022-07-03T16:23:21.773000Z\"\r\n  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/contents",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"contents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modify contents",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " { \r\n    \"title\": \"Mr. Silas Durgan PhD\",\r\n    \"creator\": \"yharvey\",\r\n    \"provider\": \"Roberts, Spinka and Runolfsdottir\",\r\n    \"summary\": \"Porro voluptatum repudiandae dolor sit ut qui commodi. At facere sed totam doloribus. Voluptate vitae eius tempore architecto.\",\r\n    \"links\": \"http://schamberger.com/\",\r\n    \"release_date\": \"2020-05-20 21:49:37\",\r\n    \"updated_at\": \"2022-06-30T20:11:02.812000Z\",\r\n    \"created_at\": \"2022-06-30T20:11:02.812000Z\"\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/contents/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"contents",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete contents",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/contents/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"contents",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get contents",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/contents?page=1&size=200",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"contents"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "200"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get content by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/contents/:id",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"contents",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "62be035633c9d23b4b089bdf"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
