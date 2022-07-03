@@ -26,7 +26,7 @@ abstract class RestControllerBase extends Controller
     {
         $pageVariable = intval($request->query('page', '1'));
         $pageSizeVariable = intval($request->query('size', '10'));
-        return $this->clazz->simplePaginate($pageSizeVariable, ['*'], $pageVariable);
+        return $this->clazz->simplePaginate($pageSizeVariable, ['*'], '',$pageVariable);
     }
 
     /**
