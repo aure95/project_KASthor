@@ -8,6 +8,8 @@ use App\Models\MediaType;
 use App\Models\Content;
 use App\Models\StorageLink;
 use App\Models\Universe;
+use App\Models\Category;
+use App\Models\Advertising;
 
 class Preference extends Model
 {

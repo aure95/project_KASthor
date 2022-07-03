@@ -40,20 +40,16 @@ class Content extends Model
         return $this->belongsTo(MediaType::class, 'mediatype_id');
     }
 
-    // public function categories() {
-    //     return $this->belongsToMany(Category::class, null, null, 'category_ids');
-    // }
-
     public function categories() {
         return $this->morphedByMany(Category::class, 'has_content');
     }
 
-    // public function type() {
-    //     return $this->morphedByMany(MediaType::class, 'has_content');
-    // }
-
     public function storageLinks() {
         return $this->morphedToMany(StorageLink::class, 'has_content');
+    }
+
+    public function createdBy() {
+        return $this->belongsToMany(User::class, null, null, 'user_ids');
     }
 
     public function tags() {

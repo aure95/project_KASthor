@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Content;
 use App\Models\MediaType;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\base\RestControllerBase;
+use App\Models\StorageLink;
 
 class ContentController extends RestControllerBase
 {
@@ -14,16 +16,6 @@ class ContentController extends RestControllerBase
     public function __construct() {
         parent::__construct(new Content());
     }
-
-     // /**
-    //  * Display a listing of the resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function index()
-    // {
-    //     //
-    // }
 
     /**
      * Store a newly created resource in storage.
@@ -34,58 +26,32 @@ class ContentController extends RestControllerBase
     public function store(Request $request)
     {
         $content = new Content();
+        $content->title = $request->input('title');
         $content->creator = $request->input('creator');
-        $content->creator = $request->input('provider');
-        $content->creator = $request->input('summary');
-        // $content->creator = $request('links');
-        $type = MediaType::where('name', $request->input('mediatype_name'))->firstOrFail();
-        $content->type()->associate($type);
-        $categories_name = $request->input('categories_name');
-        //à revoir changement suite à passage methode morphedBy()
-        if ($categories_name != null && count($categories_name) != 0) {
-            foreach ($categories_name as $category_name) {
-                $category = Category::where('name', $category_name)->firstOrfail();
-                $content->categories()->attach($category);
-                $content->save();
-            }
+        $content->provider = $request->input('provider');
+        $content->summary = $request->input('summary');
+        $content->links =  $request->input('links', []);
+        $content->release_date = $request->input('release_date');
+
+        $typeFound = MediaType::find($request->input('mediatype_id'));
+        if ($typeFound != null) {
+            $content->type()->associate($typeFound->first());
         }
+        $userFound = User::find($request->input('user_id'));
+        if ($userFound != null) {
+            $content->createdBy()->associate($userFound->first());
+        }
+        // we have to save() before attach()
+        $content->save();
+        $mediasFound = StorageLink::find($request->input('media_ids', []));
+        if (count($mediasFound) != 0) {
+            $content->medias()->attach($mediasFound);
+        }
+        $categoriesFound = Category::find($request->input('categories_ids', []));
+        if (count($categoriesFound) != 0) {
+            $content->categories()->attach($categoriesFound);
+        }
+
     }
 
-    // public function all() {
-    //     return Content::all();
-    // }
-
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show($id)
-    // {
-    //     //
-    // }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    // /**
-    //  * Remove the specified resource from storage.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function destroy($id)
-    // {
-    //     //
-    // }
 }

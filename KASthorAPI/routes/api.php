@@ -72,8 +72,8 @@ Route::delete('/storage-links/{id}', 'StorageLinkController@destroy');
 Route::post('/contents', 'ContentController@store');
 Route::get('/contents', 'ContentController@index');
 Route::get('/contents/{id}', 'ContentController@show');
-Route::put('/Content/{id}','ContentController@update');
-Route::delete('/storage-links/{id}', 'ContentController@destroy');
+Route::put('/contents/{id}','ContentController@update');
+Route::delete('/contents/{id}', 'ContentController@destroy');
 
 // tags
 
