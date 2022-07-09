@@ -5,12 +5,22 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Base\RestControllerBase;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Resources\CategoryCollections;
 
 class CategoryController extends RestControllerBase
 {
 
     public function __construct() {
         parent::__construct(new Category());
+    }
+
+
+    public function index(Request $request)
+    {
+        $pageVariable = intval($request->query('page', '1'));
+        $pageSizeVariable = intval($request->query('size', '10'));
+        // return $this->clazz->simplePaginate($pageSizeVariable, ['*'], '',$pageVariable);
+        return CategoryCollections::collection(Category::simplePaginate($pageSizeVariable, ['*'], '',$pageVariable));
     }
 
     /**

@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         CategorySeeder::class,
         MediaTypeSeeder::class,
         ContentSeeder::class,
-        UniverseSeeder::class
+        // UniverseSeeder::class
     ];
     /**
      * Seed the application's database.

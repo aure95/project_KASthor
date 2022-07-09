@@ -21,7 +21,7 @@ class Category extends Model
     protected $fillable = ['name'];
 
     public function contents(){
-        return $this->morphToMany(Content::class,'has_content');
+        return $this->morphToMany(Content::class,'has_contents');
     }
 
     use HasFactory;

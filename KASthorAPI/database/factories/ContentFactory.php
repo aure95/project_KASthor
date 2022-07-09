@@ -2,10 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use App\Models\Content;
+use App\Models\MediaType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Tmdb\Repository\MovieRepository;
 use Tmdb\Client as Client;
+use Database\Seeders\MediaTypeSeeder;
 
 
 
@@ -27,8 +30,6 @@ class ContentFactory extends Factory
      */
     protected $model = Content::class;
 
-
-
     /**
      * Define the model's default state.
      *
@@ -37,6 +38,7 @@ class ContentFactory extends Factory
     public function definition()
     {
         $userName = str_replace('.', " ", $this->faker->userName());
+        $type = MediaType::all()->random(1);
 
         return [
             'title' => $this->faker->name(),
@@ -44,7 +46,16 @@ class ContentFactory extends Factory
             'provider' => $this->faker->company(),
             'summary' => $this->faker->text(),
             'links' => $this->faker->url(),
+            'type' => $this->type()->associate($type),
             'release_date' => $this->faker->dateTime()->format('Y-m-d H:i:s')
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (Content $content) {
+            // $contentNumberToGet = rand(1, $this->nbMaxOfContents);
+
+        });
     }
 }

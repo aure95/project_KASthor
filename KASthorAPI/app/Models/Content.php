@@ -40,8 +40,12 @@ class Content extends Model
         return $this->belongsTo(MediaType::class, 'mediatype_id');
     }
 
+    // public function categories() {
+    //     return $this->morphedByMany(Category::class, 'has_content');
+    // }
+
     public function categories() {
-        return $this->morphedByMany(Category::class, 'has_content');
+        return $this->morphedByMany(Category::class, 'has_contents');
     }
 
     public function storageLinks() {
