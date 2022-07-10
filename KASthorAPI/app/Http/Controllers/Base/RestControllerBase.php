@@ -59,7 +59,8 @@ abstract class RestControllerBase extends Controller
      */
     public function show($id)
     {
-        return $this->clazz->findOrFail($id);
+        return $this->clazzCollection::collection(
+            array($this->clazz->findOrFail($id)));
     }
 
     /**

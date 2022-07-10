@@ -45,6 +45,10 @@ class Content extends Model
         return $this->belongsToMany(Category::class, null, null, 'category_ids');
     }
 
+    // public function medias() {
+    //     return $this->morphMany(StorageLink::class, 'has_medias');
+    // }
+
     public function medias() {
         return $this->belongsToMany(StorageLink::class, null, null, 'storagelink_ids');
     }

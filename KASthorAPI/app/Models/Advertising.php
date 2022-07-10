@@ -27,8 +27,8 @@ class Advertising extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function medias(){
-        return $this->morphToMany(StorageLink::class, 'has_storage_links');
+    public function medias() {
+        return $this->belongsToMany(StorageLink::class, null, null, 'storagelink_ids');
     }
 
       /**

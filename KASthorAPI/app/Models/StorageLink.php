@@ -22,13 +22,5 @@ class StorageLink extends Model
      */
     protected $fillable = ['name'];
 
-    public function content_owners() {
-        return $this->morphedBymany(Content::class, 'has_storage_links');
-    }
-
-    public function a0dvertising_owners() {
-        return $this->morphedBymany(Advertising::class, 'has_storage_links');
-    }
-
     use HasFactory;
 }
