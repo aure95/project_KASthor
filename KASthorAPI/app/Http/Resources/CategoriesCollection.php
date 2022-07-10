@@ -16,7 +16,8 @@ class CategoriesCollection extends JsonResource
     {
         return [
             'id' => $this->id,
-            'contents' => $this->contents
+            'name' => $this->name
+            // 'contents' => $this->contents
         ];
     }
 }

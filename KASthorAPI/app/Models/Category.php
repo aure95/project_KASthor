@@ -20,9 +20,13 @@ class Category extends Model
 
     protected $fillable = ['name'];
 
-    public function contents(){
-        return $this->morphToMany(Content::class,'has_contents');
-    }
+    // public function contents(){
+    //     return $this->morphToMany(Content::class,'has_content');
+    // }
+
+    // public function contents(){
+    //     return $this->hasMany(Content::class, );
+    // }
 
     use HasFactory;
 }

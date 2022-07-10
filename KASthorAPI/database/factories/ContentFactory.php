@@ -32,6 +32,8 @@ class ContentFactory extends Factory
      */
     protected $model = Content::class;
 
+    protected $nbMaxOfCategories = 3;
+
     /**
      * Define the model's default state.
      *
@@ -60,10 +62,17 @@ class ContentFactory extends Factory
     public function configure()
     {
         return $this->afterCreating(function (Content $content) {
+            // Mediatype
             $type = MediaType::all()->random(1)->first();
             // $contentNumberToGet = rand(1, $this->nbMaxOfContents);
             $content->type()->associate($type);
             $content->save();
+            // Categories
+            $categoriesNumberToGet = rand(1, $this->nbMaxOfCategories);
+            $categories = Category::all()->random($categoriesNumberToGet);
+            foreach($categories as $category) {
+                $content->categories()->attach($category);
+            }
         });
     }
 }

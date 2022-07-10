@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\StorageLink;
 use App\Models\Tag;
 use App\Models\Universe;
+use Jenssegers\Mongodb\Relations\MorphTo;
 
 class Content extends Model
 {
@@ -40,12 +41,8 @@ class Content extends Model
         return $this->belongsTo(MediaType::class, 'mediatype_id');
     }
 
-    // public function categories() {
-    //     return $this->morphedByMany(Category::class, 'has_content');
-    // }
-
     public function categories() {
-        return $this->morphedByMany(Category::class, 'has_contents');
+        return $this->belongsToMany(Category::class, null, null, 'category_ids');
     }
 
     public function storageLinks() {
