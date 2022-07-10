@@ -14,6 +14,8 @@ use Database\Seeders\MediaTypeSeeder;
 
 class ContentFactory extends Factory
 {
+
+    static $counter = 1;
     // protected $client;
 
     // public function __construct() {
@@ -38,24 +40,30 @@ class ContentFactory extends Factory
     public function definition()
     {
         $userName = str_replace('.', " ", $this->faker->userName());
-        $type = MediaType::all()->random(1);
 
-        return [
-            'title' => $this->faker->name(),
-            'creator' => $userName,
-            'provider' => $this->faker->company(),
-            'summary' => $this->faker->text(),
-            'links' => $this->faker->url(),
-            'type' => $this->type()->associate($type),
-            'release_date' => $this->faker->dateTime()->format('Y-m-d H:i:s')
-        ];
+        ContentFactory::$counter += 1;
+
+        $content = new Content();
+
+        $content->title = strval(ContentFactory::$counter);
+        $content->creator = $userName;
+        $content->provider = $this->faker->company();
+        $content->summary = $this->faker->text();
+        $content->links = $this->faker->url();
+
+        $content->release_date = $this->faker
+                     ->dateTime()->format('Y-m-d H:i:s');
+
+        return array($content);
     }
 
     public function configure()
     {
         return $this->afterCreating(function (Content $content) {
+            $type = MediaType::all()->random(1)->first();
             // $contentNumberToGet = rand(1, $this->nbMaxOfContents);
-
+            $content->type()->associate($type);
+            $content->save();
         });
     }
 }
