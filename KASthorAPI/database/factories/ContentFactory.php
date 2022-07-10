@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Category;
 use App\Models\Content;
 use App\Models\MediaType;
+use App\Models\StorageLink;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Tmdb\Repository\MovieRepository;
 use Tmdb\Client as Client;
@@ -33,6 +34,7 @@ class ContentFactory extends Factory
     protected $model = Content::class;
 
     protected $nbMaxOfCategories = 3;
+    protected $nbMaxOfStorageLinks = 3;
 
     /**
      * Define the model's default state.
@@ -72,6 +74,12 @@ class ContentFactory extends Factory
             $categories = Category::all()->random($categoriesNumberToGet);
             foreach($categories as $category) {
                 $content->categories()->attach($category);
+            }
+            //StorageLinks
+            $storageLinksNumberToGet = rand(1, $this->nbMaxOfStorageLinks);
+            $storageLinks = StorageLink::all()->random($storageLinksNumberToGet);
+            foreach($storageLinks as $storageLink) {
+                $content->medias()->attach($storageLink);
             }
         });
     }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Base\RestControllerBase;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Resources\CategoryCollections;
+use App\Http\Resources\CategoryCollection;
 
 class CategoryController extends RestControllerBase
 {
@@ -15,13 +15,13 @@ class CategoryController extends RestControllerBase
     }
 
 
-    public function index(Request $request)
-    {
-        $pageVariable = intval($request->query('page', '1'));
-        $pageSizeVariable = intval($request->query('size', '10'));
-        // return $this->clazz->simplePaginate($pageSizeVariable, ['*'], '',$pageVariable);
-        return CategoryCollections::collection(Category::simplePaginate($pageSizeVariable, ['*'], '',$pageVariable));
-    }
+    // public function index(Request $request)
+    // {
+    //     $pageVariable = intval($request->query('page', '1'));
+    //     $pageSizeVariable = intval($request->query('size', '10'));
+    //     // return $this->clazz->simplePaginate($pageSizeVariable, ['*'], '',$pageVariable);
+    //     return CategoryCollection::collection(Category::simplePaginate($pageSizeVariable, ['*'], '',$pageVariable));
+    // }
 
     /**
      * Store a newly created resource in storage.

@@ -3,10 +3,12 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Content;
+use App\Models\StorageLink;
 
-class ContentSeeder extends Seeder
+class StorageLinkSeeder extends Seeder
 {
+    protected $nbOfStorageLinks = 100;
+
     /**
      * Run the database seeds.
      *
@@ -14,8 +16,8 @@ class ContentSeeder extends Seeder
      */
     public function run()
     {
-        Content::factory()
-            ->count(50)
+        StorageLink::factory()
+            ->count($this->nbOfStorageLinks)
             ->create();
     }
 }

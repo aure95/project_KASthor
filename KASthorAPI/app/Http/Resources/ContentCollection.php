@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\CategoryCollections;
+use App\Http\Resources\CategoryCollection;
 
 class ContentCollection extends JsonResource
 {
@@ -16,17 +16,14 @@ class ContentCollection extends JsonResource
     public function toArray($request)
     {
 
-
-
-
        return [
          'id' => $this->id,
          'title' => $this->title,
          'creator' => $this->creator,
          'provider' => $this->provider,
          'summary' => $this->summary,
-         'medias' => $this->medias,
-         'categories' => CategoryCollections::collection($this->categories),
+         'medias' => StorageLinkCollection::collection($this->medias),
+         'categories' => CategoryCollection::collection($this->categories),
          'links' => $this->links,
          'type' => $this->type,
          'release_date' => $this->release_date,

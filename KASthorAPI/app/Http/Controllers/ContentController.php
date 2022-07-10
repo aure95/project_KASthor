@@ -19,13 +19,13 @@ class ContentController extends RestControllerBase
         parent::__construct(new Content());
     }
 
-    public function index(Request $request)
-    {
-        $pageVariable = intval($request->query('page', '1'));
-        $pageSizeVariable = intval($request->query('size', '10'));
-        // return $this->clazz->simplePaginate($pageSizeVariable, ['*'], '',$pageVariable);
-        return ContentCollection::collection(Content::simplePaginate($pageSizeVariable, ['*'], '',$pageVariable));
-    }
+    // public function index(Request $request)
+    // {
+    //     $pageVariable = intval($request->query('page', '1'));
+    //     $pageSizeVariable = intval($request->query('size', '10'));
+    //     // return $this->clazz->simplePaginate($pageSizeVariable, ['*'], '',$pageVariable);
+    //     return ContentCollection::collection(Content::simplePaginate($pageSizeVariable, ['*'], '',$pageVariable));
+    // }
 
     /**
      * Store a newly created resource in storage.

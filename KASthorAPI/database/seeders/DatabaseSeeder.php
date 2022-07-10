@@ -2,13 +2,14 @@
 
 namespace Database\Seeders;
 
-
+use App\Models\StorageLink;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\MediaTypeSeeder;
 use Database\Seeders\CategorySeeder;
 use Database\Seeders\ContentSeeder;
 use Database\Seeders\UniverseSeeder;
+use Database\Seeders\StorageLinkSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,6 +17,7 @@ class DatabaseSeeder extends Seeder
         UserSeeder::class,
         CategorySeeder::class,
         MediaTypeSeeder::class,
+        StorageLinkSeeder::class,
         ContentSeeder::class,
         // UniverseSeeder::class
     ];

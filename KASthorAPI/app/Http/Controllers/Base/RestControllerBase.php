@@ -5,18 +5,31 @@ namespace App\Http\Controllers\Base;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Jenssegers\Mongodb\Eloquent\Model;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 abstract class RestControllerBase extends Controller
 {
     //@var Jenssegers\Mongodb\Eloquent\Model
     protected $clazz;
+    // @var Illuminate\Http\Resources\Json\JsonResource
+    protected $clazzCollection;
 
     function __construct(Object $clazz) {
-
         $this->clazz = $clazz;
+        $this->clazzCollection = 'App\Http\Resources\\'
+                        .str_replace('App\Models\\','',$clazz::class)
+                            .'Collection';
+
     }
 
-    /**
+    // public function index(Request $request)
+    // {
+    //     $pageVariable = intval($request->query('page', '1'));
+    //     $pageSizeVariable = intval($request->query('size', '10'));
+    //     return $this->clazz->simplePaginate($pageSizeVariable, ['*'], '',$pageVariable);
+    // }
+
+     /**
     * Display a listing of the resource.
     * @var $page (requestParameter) specify pag number by page by value provided, default first page
     * @var $size (requestParameter) specify number of elements by page by value provided, default 10 elements
@@ -26,7 +39,8 @@ abstract class RestControllerBase extends Controller
     {
         $pageVariable = intval($request->query('page', '1'));
         $pageSizeVariable = intval($request->query('size', '10'));
-        return $this->clazz->simplePaginate($pageSizeVariable, ['*'], '',$pageVariable);
+        // return $this->clazz->simplePaginate($pageSizeVariable, ['*'], '',$pageVariable);
+        return $this->clazzCollection::collection($this->clazz::simplePaginate($pageSizeVariable, ['*'], '',$pageVariable));
     }
 
     /**

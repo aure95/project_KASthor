@@ -4,10 +4,10 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoriesCollection extends JsonResource
+class StorageLinkCollection extends JsonResource
 {
     /**
-     * Transform the resource into an array.
+     * Transform the resource collection into an array.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
@@ -16,8 +16,7 @@ class CategoriesCollection extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name
-            // 'contents' => $this->contents
+            'name' => $this->name,
         ];
     }
 }
