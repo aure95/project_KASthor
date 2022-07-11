@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\CategoryCollection;
+use App\Http\Resources\MediaTypeCollection;
 
 class ContentCollection extends JsonResource
 {
@@ -25,7 +26,7 @@ class ContentCollection extends JsonResource
          'medias' => StorageLinkCollection::collection($this->medias),
          'categories' => CategoryCollection::collection($this->categories),
          'links' => $this->links,
-         'type' => $this->type,
+         'type' => MediaTypeCollection::collection(array($this->type))[0],
          'release_date' => $this->release_date,
          'created_at' => $this->created_at,
          'updated_at' => $this->updated_at,
