@@ -27,9 +27,9 @@ class UniverseController extends RestControllerBase
         $universe->name = $request->input('name');
         $universe->save();
         // contents
-        $contentsFound = Content::find($request->input('media_ids', []));
+        $contentsFound = Content::find($request->input('content_ids', []));
         if (count($contentsFound) != 0) {
-            $universe->contents()->attach($contentsFound->first());
+            $universe->contents()->attach($contentsFound);
         }
 
     }
