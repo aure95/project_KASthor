@@ -55,11 +55,11 @@ class ContentController extends RestControllerBase
         $content->save();
         $mediasFound = StorageLink::find($request->input('media_ids', []));
         if (count($mediasFound) != 0) {
-            $content->medias()->attach($mediasFound->first());
+            $content->medias()->attach($mediasFound->all());
         }
         $categoriesFound = Category::find($request->input('categories_ids', []));
         if (count($categoriesFound) != 0) {
-            $content->categories()->attach($categoriesFound->first());
+            $content->categories()->attach($categoriesFound->all());
         }
 
     }

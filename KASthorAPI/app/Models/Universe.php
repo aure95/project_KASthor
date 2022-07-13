@@ -11,18 +11,16 @@ class Universe extends Model
     protected $connection = 'mongodb';
     protected $collection='universes';
 
+    public $incrementing = true;
+
     protected $primaryKey = '_id';
 
     public $timestamps = false;
 
     protected $fillable = ["name"];
 
-    // public function contents() {
-    //     return $this->belongsToMany(Content::class, null, null, 'content_ids');
-    // }
-
     public function contents(){
-        return $this->morphToMany(Content::class, 'has_content');
+        return $this->belongsToMany(Content::class, null, null, 'content_ids');
     }
 
     use HasFactory;

@@ -11,7 +11,7 @@ use App\Models\User;
 class Advertising extends Model
 {
     protected $connection = 'mongodb';
-    protected $collection = 'advertising';
+    protected $collection = 'advertisings';
 
     protected $primaryKey = '_id';
 

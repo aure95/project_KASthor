@@ -24,14 +24,17 @@ class UniverseFactory extends Factory
      */
     public function definition()
     {
-        $universe = new Universe();
-        $universe->name =  $this->faker->title();
-        return array($universe);
+        return [
+            'name' => $this->faker->unique()->domainWord()
+                                .$this->faker->domainWord()
+        ];
+
     }
 
     public function configure()
     {
         return $this->afterCreating(function (Universe $universe) {
+            $universe->save();
             $contentNumberToGet = rand(1, $this->nbMaxOfContents);
             $contents = Content::all()->random($contentNumberToGet);
             foreach($contents as $content) {

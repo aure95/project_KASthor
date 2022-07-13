@@ -45,20 +45,15 @@ class ContentFactory extends Factory
     {
         $userName = str_replace('.', " ", $this->faker->userName());
 
-        ContentFactory::$counter += 1;
-
-        $content = new Content();
-
-        $content->title = strval(ContentFactory::$counter);
-        $content->creator = $userName;
-        $content->provider = $this->faker->company();
-        $content->summary = $this->faker->text();
-        $content->links = $this->faker->url();
-
-        $content->release_date = $this->faker
-                     ->dateTime()->format('Y-m-d H:i:s');
-
-        return array($content);
+        return [
+            'title' => $this->faker->unique()->userName(),
+            'creator' => $userName,
+            'provider' => $this->faker->company(),
+            'summary' => $this->faker->text(),
+            'links' => $this->faker->url(),
+            'release_date' => $this->faker
+                         ->dateTime()->format('Y-m-d H:i:s'),
+        ];
     }
 
     public function configure()

@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         StorageLinkSeeder::class,
         AdvertisingSeeder::class,
         ContentSeeder::class,
-        // UniverseSeeder::class
+        UniverseSeeder::class
     ];
     /**
      * Seed the application's database.
