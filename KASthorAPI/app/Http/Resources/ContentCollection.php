@@ -28,6 +28,7 @@ class ContentCollection extends JsonResource
          'links' => $this->links,
          'type' => MediaTypeCollection::collection(array($this->type))[0],
          'release_date' => $this->release_date,
+         'created_by' => $this->createdBy,
          'created_at' => $this->created_at,
          'updated_at' => $this->updated_at,
          'deleted_date' => $this->deleted_date

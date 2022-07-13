@@ -33,10 +33,6 @@ class Content extends Model
                            'release_date'
                          ];
 
-    // public function medias(){
-    //     return $this->morphToMany(StorageLink::class, 'has_storage_links');
-    // }
-
     public function type() {
         return $this->belongsTo(MediaType::class, 'mediatype_id');
     }
@@ -45,48 +41,17 @@ class Content extends Model
         return $this->belongsToMany(Category::class, null, null, 'category_ids');
     }
 
-    // public function medias() {
-    //     return $this->morphMany(StorageLink::class, 'has_medias');
-    // }
-
     public function medias() {
         return $this->belongsToMany(StorageLink::class, null, null, 'storagelink_ids');
     }
 
     public function createdBy() {
-        return $this->belongsToMany(User::class, null, null, 'user_ids');
-    }
-
-    public function tags() {
-        return $this->morphedByMany(Tag::class, 'has_content');
-    }
-
-    public function universes() {
-        return $this->morphedByMany(Universe::class, 'has_content');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     protected $casts = [
         'links' => 'array'
     ];
-
-    // public function categories() {
-    //     return $this->hasMany(Category::class, 'categories_id');
-    // }
-    // /**
-    //  * The attributes that should be cast.
-    //  *
-    //  * @var array
-    //  */
-    // protected $casts = [
-    //     'creators' => 'array',
-    //     'type' => Mediatype::class,
-    //     'providers' => 'array',
-    //     'pictures' => 'array',
-    //     'categories' => 'array',
-    //     'links' => 'array',
-    //     'releaseDate' => 'array',
-
-    // ];
 
     use HasFactory;
 }

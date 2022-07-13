@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Tmdb\Repository\MovieRepository;
 use Tmdb\Client as Client;
 use Database\Seeders\MediaTypeSeeder;
+use App\Models\User;
 
 
 
@@ -61,9 +62,14 @@ class ContentFactory extends Factory
         return $this->afterCreating(function (Content $content) {
             // Mediatype
             $type = MediaType::all()->random(1)->first();
-            // $contentNumberToGet = rand(1, $this->nbMaxOfContents);
             $content->type()->associate($type);
+
+            // User
+            $user = User::all()->random()->first();
+            $content->createdBy()->associate($user);
+
             $content->save();
+
             // Categories
             $categoriesNumberToGet = rand(1, $this->nbMaxOfCategories);
             $categories = Category::all()->random($categoriesNumberToGet);
