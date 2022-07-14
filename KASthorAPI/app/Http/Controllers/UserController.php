@@ -13,6 +13,14 @@ class UserController extends RestControllerBase
     }
 
     public function store(Request $request) {
-        //
+        $user = new User();
+        $user->firstname = $request->input('firstname');
+        $user->lastname = $request->input('lastname');
+        $user->birthdate = $request->input('birthdate');
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
+        $user->save();
+
+        //'$user->preferences' = $request->input(preferences),
     }
 }
