@@ -60,8 +60,9 @@ class _ManageContentState extends State<ManageContentPage> {
     @override
     void initState() {
       super.initState();
-      var test = contentService.getContents();
-      print(test);
+      contentService.getContents()
+        .then((value) => print(value))
+        .catchError((error) => print(error));
     }
 
   void _incrementCounter() {
