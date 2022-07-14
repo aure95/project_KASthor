@@ -22,13 +22,8 @@ class Tag extends Model
      */
     protected $fillable = ['name'];
 
-
-    // public function contents() {
-    //     return $this->belongsToMany(Content::class, null, null, 'content_ids');
-    // }
-
-    public function contents(){
-        return $this->morphToMany(Content::class,'has_content');
+    public function contents() {
+        return $this->belongsToMany(Content::class, null, null, 'content_ids');
     }
 
     use HasFactory;

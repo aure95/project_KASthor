@@ -29,6 +29,7 @@ class TagController extends RestControllerBase
         $tag = new Tag();
         $tag->name = $request->input('name');
         $tag->save();
+
         $contentsFound = Content::find($request->input('content_ids'));
         if (count($contentsFound) != 0) {
             $tag->contents()->attach($contentsFound);

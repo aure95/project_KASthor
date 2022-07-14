@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\StorageLink;
+use App\Models\Tag;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\MediaTypeSeeder;
@@ -11,6 +12,7 @@ use Database\Seeders\ContentSeeder;
 use Database\Seeders\UniverseSeeder;
 use Database\Seeders\StorageLinkSeeder;
 use Database\Seeders\AdvertisingSeeder;
+use Database\Seeders\TagSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +23,7 @@ class DatabaseSeeder extends Seeder
         StorageLinkSeeder::class,
         AdvertisingSeeder::class,
         ContentSeeder::class,
+        TagSeeder::class,
         UniverseSeeder::class
     ];
     /**

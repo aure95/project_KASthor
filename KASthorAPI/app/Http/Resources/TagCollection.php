@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UniverseCollection extends JsonResource
+class TagCollection extends JsonResource
 {
     /**
      * Transform the resource collection into an array.
@@ -14,11 +14,10 @@ class UniverseCollection extends JsonResource
      */
     public function toArray($request)
     {
-
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'contents' => $this->contents->pluck('id')->toArray(),
+            "id" => $this->id,
+            "name" => $this->name,
+            "contents" => $this->contents->pluck('id')->toArray()
         ];
     }
 }
