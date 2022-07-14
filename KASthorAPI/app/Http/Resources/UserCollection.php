@@ -22,7 +22,7 @@ class UserCollection extends JsonResource
             'email' => $this->email,
             'email_verified_at' => $this->email_verified_at,
             'password' => $this->password,
-            //'preferences' => $this->preferences,
+            'preference' => $this->preferences,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'deleted_date' => $this->deleted_date

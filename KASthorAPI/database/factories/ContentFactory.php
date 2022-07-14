@@ -65,7 +65,7 @@ class ContentFactory extends Factory
             $content->type()->associate($type);
 
             // User
-            $user = User::all()->random()->first();
+            $user = User::all()->random(1)->first();
             $content->createdBy()->associate($user);
 
             $content->save();

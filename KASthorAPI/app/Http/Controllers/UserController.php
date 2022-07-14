@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Base\RestControllerBase;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Preference;
 
 class UserController extends RestControllerBase
 {
@@ -19,8 +20,11 @@ class UserController extends RestControllerBase
         $user->birthdate = $request->input('birthdate');
         $user->email = $request->input('email');
         $user->password = $request->input('password');
-        $user->save();
 
-        //'$user->preferences' = $request->input(preferences),
+        $preferenceFound = Preference::find($request->input('preference_id'));
+        if ($preferenceFound != null) {
+            $user->preference()->associate($preferenceFound->first());
+        }
+        $user->save();
     }
 }

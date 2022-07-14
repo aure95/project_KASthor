@@ -6,10 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
 use App\Models\MediaType;
 use App\Models\Content;
-use App\Models\StorageLink;
 use App\Models\Universe;
 use App\Models\Category;
-use App\Models\Advertising;
+use App\Models\Tag;
 
 class Preference extends Model
 {
@@ -21,7 +20,7 @@ class Preference extends Model
     public $timestamps = false;
 
     public function universes() {
-        return $this->morphToMany(Universe::class, 'has_universes');
+        return $this->belongsTomany(Universe::class, null, null, 'universe_ids');
     }
 
     public function types() {
@@ -32,12 +31,12 @@ class Preference extends Model
         return $this->belongsToMany(Content::class, null, null, 'content_ids');
     }
 
-    public function categories() {
-        return $this->belongsToMany(Category::class, null, null , 'category_ids');
+    public function tags() {
+        return $this->belongsToMany(Tag::class, null, null , 'tag_ids');
     }
 
-    public function advertisings(){
-        return $this->morphToMany(Advertising::class, 'has_storage_links');
+    public function categories() {
+        return $this->belongsToMany(Category::class, null, null , 'category_ids');
     }
 
     use HasFactory;

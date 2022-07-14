@@ -22,7 +22,8 @@ class CreateContentTable extends Migration
             $table->foreignId('mediatype_id')->references('_id')->on('mediatypes');
             $table->json('links');
             $table->date('release_date');
-            $table->foreignkey('created_by')->references('_id')->on('users');
+            $table->foreignId('created_by')->references('_id')->on('users');
+            $table->foreignId('preference')->references('_id')->on('preferences');
             $table->timestamps();
         });
     }

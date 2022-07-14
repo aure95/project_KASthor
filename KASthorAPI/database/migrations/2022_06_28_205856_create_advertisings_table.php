@@ -17,6 +17,7 @@ class CreateAdvertisingsTable extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('user_id')->references('_id')->on('users');
+            $table->boolean('active');
             $table->timestamps();
         });
     }

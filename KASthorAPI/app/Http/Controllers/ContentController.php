@@ -9,8 +9,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\base\RestControllerBase;
 use App\Models\StorageLink;
-Use App\Http\Resources\ContentCollection;
-use Database\Seeders\ContentSeeder;
 
 class ContentController extends RestControllerBase
 {
@@ -18,14 +16,6 @@ class ContentController extends RestControllerBase
     public function __construct() {
         parent::__construct(new Content());
     }
-
-    // public function index(Request $request)
-    // {
-    //     $pageVariable = intval($request->query('page', '1'));
-    //     $pageSizeVariable = intval($request->query('size', '10'));
-    //     // return $this->clazz->simplePaginate($pageSizeVariable, ['*'], '',$pageVariable);
-    //     return ContentCollection::collection(Content::simplePaginate($pageSizeVariable, ['*'], '',$pageVariable));
-    // }
 
     /**
      * Store a newly created resource in storage.
@@ -47,7 +37,7 @@ class ContentController extends RestControllerBase
         if ($typeFound != null) {
             $content->type()->associate($typeFound->first());
         }
-        $userFound = User::find($request->input('user_id'));
+        $userFound = User::find($request->input('created_by'));
         if ($userFound != null) {
             $content->createdBy()->associate($userFound->first());
         }
@@ -57,7 +47,7 @@ class ContentController extends RestControllerBase
         if (count($mediasFound) != 0) {
             $content->medias()->attach($mediasFound);
         }
-        $categoriesFound = Category::find($request->input('categories_ids', []));
+        $categoriesFound = Category::find($request->input('category_ids', []));
         if (count($categoriesFound) != 0) {
             $content->categories()->attach($categoriesFound);
         }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Preference;
 
 class User extends Authenticatable
 {
@@ -15,8 +16,6 @@ class User extends Authenticatable
 
     protected $connection = 'mongodb';
     protected $collection = 'users';
-
-    public $incrementing = true;
 
     public $timestamps = true;
 
@@ -33,6 +32,10 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+
+    public function preference() {
+        return $this->belongsTo(Preference::class, 'preference_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
