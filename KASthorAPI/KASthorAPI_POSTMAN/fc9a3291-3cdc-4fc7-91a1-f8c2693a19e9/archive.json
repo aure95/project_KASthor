@@ -1,4 +1,8 @@
 {
+  "environment": {
+    "39065104-0ffc-4baa-b67c-6d9d1515367a": true,
+    "542c941e-edef-4660-b9ae-85415a6a8fb2": true
+  },
   "collection": {
     "25be376d-43db-4a49-b7cf-38af5335686c": true,
     "308eb0dd-dcc7-41fb-8b5c-124d13111960": true,
@@ -9,9 +13,5 @@
     "badb14ea-0e4b-4e1d-9013-7f2bf6f08bfe": true,
     "d93938a8-74c3-4668-99c2-8f76944269ad": true,
     "e7d1ee45-c854-4a56-b88e-27fe45fd4cba": true
-  },
-  "environment": {
-    "39065104-0ffc-4baa-b67c-6d9d1515367a": true,
-    "542c941e-edef-4660-b9ae-85415a6a8fb2": true
   }
 }
