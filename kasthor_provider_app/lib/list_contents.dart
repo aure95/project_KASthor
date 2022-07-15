@@ -7,44 +7,81 @@ import 'package:flutter/foundation.dart';
 
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyApp(userRole: UserRole.SPONSOR));
 }
 
 Future<List<Content>> getAvailableContents() async {
   ContentService contentService = new ContentService();
-  var body = await contentService.getContents(1,2);
+  var body = await contentService.getContents(1,50);
   var test = compute(parseContents, body);
   print(test);
   return test;
 }
 
+enum UserRole {
+  USER,
+  SPONSOR
+}
+
+List<Tab> getTabs(UserRole role) {
+  List<Tab> tabs = [   
+            const Tab(icon: Icon(Icons.article)),
+            const Tab(icon: Icon(Icons.add_circle_outline)),
+          ]; 
+  if (UserRole.SPONSOR == role) {
+    tabs.add( const Tab(icon: Icon(Icons.paid)));
+  }
+  return tabs;
+}
+
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+
+  final UserRole userRole;
+
+  const MyApp({Key? key, required this.userRole}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
+    List<Tab> tabsGenerated = getTabs(userRole); 
+
     return MaterialApp(
-      title: 'manage contents',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+      
+      // title: 'manage contents',
+      // theme: ThemeData(
+      //   // This is the theme of your application.
+      //   //
+      //   // Try running your application with "flutter run". You'll see the
+      //   // application has a blue toolbar. Then, without quitting the app, try
+      //   // changing the primarySwatch below to Colors.green and then invoke
+      //   // "hot reload" (press "r" in the console where you ran "flutter run",
+      //   // or simply save your changes to "hot reload" in a Flutter IDE).
+      //   // Notice that the counter didn't reset back to zero; the application
+      //   // is not restarted.
+      //   primarySwatch: Colors.blue,
+      // ),
+      home: DefaultTabController(
+        length: tabsGenerated.length,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: TabBar(
+              tabs: tabsGenerated
+            ),
+            title: const Center(
+              child: Text('Manage content')
+            ) 
+          ),
+
+        body: const ManageContentPage(),
+        ),
       ),
-      home: const ManageContentPage(title: 'Manage content'),
     );
   }
 }
 
 class ManageContentPage extends StatefulWidget {
-  const ManageContentPage({Key? key, required this.title}) : super(key: key);
+  const ManageContentPage({Key? key}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -54,8 +91,6 @@ class ManageContentPage extends StatefulWidget {
   // case the title) provided by the parent (in this case the App widget) and
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
-
-  final String title;
 
   @override
   State<ManageContentPage> createState() => _ManageContentState();
@@ -97,11 +132,11 @@ class _ManageContentState extends State<ManageContentPage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
+      // appBar: AppBar(
+      //   // Here we take the value from the MyHomePage object that was created by
+      //   // the App.build method, and use it to set our appbar title.
+      //   title: Text(widget.title),
+      // ),
       body: FutureBuilder<List<Content>>(
   future: contents,
   builder: (context, snapshot) {
