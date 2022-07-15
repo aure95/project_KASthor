@@ -12,7 +12,7 @@ void main() {
 
 Future<List<Content>> getAvailableContents() async {
   ContentService contentService = new ContentService();
-  var body = await contentService.getContents();
+  var body = await contentService.getContents(1,2);
   var test = compute(parseContents, body);
   print(test);
   return test;
@@ -106,7 +106,8 @@ class _ManageContentState extends State<ManageContentPage> {
   future: contents,
   builder: (context, snapshot) {
     if (snapshot.hasData) {
-      return Text(snapshot.data![0].links);
+      // return Text(snapshot.data![0].medias.toString());
+      return ListDemo(contents: snapshot.data!);
       
     } else if (snapshot.hasError) {
       return Text('${snapshot.error}');
@@ -119,5 +120,45 @@ class _ManageContentState extends State<ManageContentPage> {
           ),
         );
   
+  }
+}
+
+
+
+// BEGIN listDemo
+
+class ListDemo extends StatelessWidget {
+
+  final List<Content> contents;
+
+  const ListDemo({Key? key, required this.contents}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+   
+    return Scaffold(
+     
+      body: Scrollbar(
+        child: ListView(
+          restorationId: 'list_demo_list_view',
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          children: [
+            for (int index = 0; index < contents.length; index++)
+              ListTile(
+                leading: ExcludeSemantics(
+                  child: CircleAvatar(child: Text('$index')),
+                ),
+                title: Text(
+                  contents[index].title
+                ),
+                subtitle: Text(
+                  contents[index].summary
+                  )
+          
+              ),
+          ],
+        ),
+      ),
+    );
   }
 }
