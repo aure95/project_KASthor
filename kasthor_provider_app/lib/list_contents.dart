@@ -73,7 +73,13 @@ class MyApp extends StatelessWidget {
             ) 
           ),
 
-        body: const ManageContentPage(),
+        body: const TabBarView(
+            children: [
+              const ManageContentPage(),
+              Icon(Icons.directions_transit),
+              Icon(Icons.directions_bike),
+            ],
+          ),
         ),
       ),
     );
@@ -149,7 +155,7 @@ class _ManageContentState extends State<ManageContentPage> {
     }
 
     // By default, show a loading spinner.
-    return const CircularProgressIndicator();
+    return const Center(child: CircularProgressIndicator());
 
   },
           ),
