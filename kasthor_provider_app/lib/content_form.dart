@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 
 // void main() => runApp(const MyApp());
@@ -44,6 +46,7 @@ class MyCustomFormState extends State<MyCustomForm> {
   // not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
 
+  Map<String,String> contentValues = new HashMap<String,String>();
   String dropdownValue = 'One';
   DateTime _date = DateTime(2020, 11, 17);
 
@@ -137,6 +140,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                     border: OutlineInputBorder(),
                     hintText: 'Title',
                   ),
+                  onSaved: (value) => contentValues['title'] = value!,
                   // The validator receives the text that the user has entered.
                   validator:  (value) => validate(value),
               ),
@@ -150,6 +154,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                   ),
                   // The validator receives the text that the user has entered.
                   validator:  (value) => validate(value),
+                  onSaved: (value) => contentValues['creator'] = value!,
                 ),
            ),
            Padding(
@@ -161,6 +166,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                 ),
                 // The validator receives the text that the user has entered.
                 validator:  (value) => validate(value),
+                onSaved: (value) => contentValues['provider'] = value!,
               ),
            ),
            Padding(
@@ -174,6 +180,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     validator:  (value) => validate(value),
+                    onSaved: (value) => contentValues['summary'] = value!,
                   )
           ), 
           ClipRRect(
@@ -236,6 +243,7 @@ class MyCustomFormState extends State<MyCustomForm> {
             child: InputDatePickerFormField(
                 firstDate: DateTime(1900),
                 lastDate: DateTime(DateTime.now().year),
+                onDateSaved: (value) =>  contentValues['release_date'] = value.toString(),
               ),
           ),
           
@@ -247,7 +255,9 @@ class MyCustomFormState extends State<MyCustomForm> {
                 if (_formKey.currentState!.validate()) {
                   // If the form is valid, display a snackbar. In the real world,
                   // you'd often call a server or save the information in a database.
-                print(_formKey.currentWidget.toString());
+                  _formKey.currentState?.save();
+                  print(contentValues);
+                
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Processing Data')),
                   );
