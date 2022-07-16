@@ -5,6 +5,8 @@ void main() {
   runApp(const MyApp());
 }
 
+
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -54,15 +56,15 @@ class _ManageContentState extends State<ManageContentPage> {
   late Future<Object> test;
   
     _ManageContentState() {
-      contentService = const ContentService();
+      contentService = ContentService();
     }
 
     @override
     void initState() {
       super.initState();
-      contentService.getContents(1, 50)
-        .then((value) => print(value))
-        .catchError((error) => print(error));
+      // contentService.getAvailableContents(1, 50)
+      //   .then((value) => print(value))
+      //   .catchError((error) => print(error));
     }
 
   void _incrementCounter() {

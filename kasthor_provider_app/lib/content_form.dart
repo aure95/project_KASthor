@@ -1,6 +1,10 @@
 import 'dart:collection';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import './models/content.dart';
+import './services/content_service.dart';
+import 'package:flutter/foundation.dart';
 
 // void main() => runApp(const MyApp());
 
@@ -12,7 +16,7 @@ import 'package:flutter/material.dart';
 //     const appTitle = 'Form Validation Demo';
 
 //     return MaterialApp(
-//       title: appTitle,
+//       title: appTitle, 
 //       home: Scaffold(
 //         appBar: AppBar(
 //           title: const Text(appTitle),
@@ -23,6 +27,13 @@ import 'package:flutter/material.dart';
 //   }
 // }
 
+
+Future<void> sendContents(Object content) async {
+  ContentService contentService = new ContentService();
+  var body = await contentService.postObjects(content);
+  print(body);
+  // var test = compute(Content.parseContents, body);
+}
 
 
 
@@ -257,6 +268,10 @@ class MyCustomFormState extends State<MyCustomForm> {
                   // you'd often call a server or save the information in a database.
                   _formKey.currentState?.save();
                   print(contentValues);
+                  var test = json.encode(contentValues);
+                  print(test);
+                  //print(jsonEncode(contentValues));
+                  sendContents(contentValues);
                 
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Processing Data')),

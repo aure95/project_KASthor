@@ -13,8 +13,8 @@ void main() {
 
 Future<List<Content>> getAvailableContents() async {
   ContentService contentService = new ContentService();
-  var body = await contentService.getContents(1,50);
-  var test = compute(parseContents, body);
+  var body = await contentService.getObjects(1,50);
+  var test = compute(Content.parseContents, body);
   print(test);
   return test;
 }
@@ -86,13 +86,13 @@ class _ManageContentState extends State<ManageContentPage> {
   late Future<List<Content>> contents;
   
     _ManageContentState() {
-      contentService = const ContentService();
+      contentService = ContentService();
     }
 
     @override
     void initState() {
       super.initState();
-      contents =  getAvailableContents();
+      contents = getAvailableContents();
         
     }
 

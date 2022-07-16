@@ -30,9 +30,13 @@ class Content {
     // required this.deleted_date
    });
 
-    factory Content.fromJson(Map<String, dynamic> json) {
-      // json['albumId'] as int,
+  //  Content fromJSON<Content>(Map<String, dynamic> json) {
+  //     return (Content.fromJson(json) as Content);
+  //  }
 
+  factory Content.fromJson(Map<String, dynamic> json) {
+    // factory Content.fromJson(Map<String, dynamic> json) {
+      // json['albumId'] as int,
       var release_date =  DateTime.parse(json['release_date'] as String);
       // var creation_date =  DateTime.parse(json['creation_date'] as String);
       // var deleted_date =  DateTime.parse(json['deleted_date'] != null? json['deleted_date']:null  as String);
@@ -42,7 +46,7 @@ class Content {
       return Content(
         id: json['id'] as String,
         title: json['title'] as String,
-        provider: json['title'] as String,
+        provider: json['provider'] as String,
         summary: json['summary'] as String,
         medias: json['medias'] as List<dynamic>,
         links: json['links'] as String,
@@ -58,22 +62,32 @@ class Content {
       );
   }
 
-}
-  // A function that converts a response body into a List<Photo>.
-  List<Content> parseContents(String responseBody) {
-  final parsed = jsonDecode(responseBody);
-  var extract;
-  
-  if (parsed['data'] == null) {
-    extract = parsed.cast<Map<String, dynamic>>();
-  } else {
-    extract = parsed['data'].cast<Map<String, dynamic>>();
-  }
-  // print("hello");
-  // print(extract);
-  // print("end");
-  var toto =  extract.map<Content>((json) => Content.fromJson(json)).toList();
-  // print(toto);
-  // print("end toto");
-  return toto;
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'title': title,
+        'summary': summary,
+        // 'medias': medias.toString(),
+        // 'links': links,
+        // 'release_date': release_date.toIso8601String(),
+  };
+    
+  static List<Content> parseContents(String responseBody) {
+      final parsed = jsonDecode(responseBody);
+      var extract;
+      
+      if (parsed['data'] == null) {
+        extract = parsed.cast<Map<String, dynamic>>();
+      } else {
+        extract = parsed['data'].cast<Map<String, dynamic>>();
+      }
+      // print("hello");
+      // print(extract);
+      // print("end");
+      var toto =  extract.map<Content>((json) => Content.fromJson(json)).toList();
+      // print(toto);
+      // print("end toto");
+      return toto;
  }
+
+
+}
