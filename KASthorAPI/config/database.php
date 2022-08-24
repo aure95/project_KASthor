@@ -94,7 +94,8 @@ return [
 
         'mongodb' => [
                 'driver' => 'mongodb',
-                'dsn' => env('DB_URI', "mongodb+srv://" . env('DB_USERNAME')  .":" . env('DB_PASSWORD') ."@cluster0.ilff3.mongodb.net/?retryWrites=true&w=majority"),
+                'dsn' => env('DB_URI', "mongodb://localhost"),
+                // 'dsn' => env('DB_URI', "mongodb+srv://" . env('DB_USERNAME')  .":" . env('DB_PASSWORD') ."@cluster0.ilff3.mongodb.net/?retryWrites=true&w=majority"),
                 'database' => env('DB_DATABASE')
         ]
 
